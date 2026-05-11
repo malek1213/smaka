@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samaka | متجر سمكة - عالم البحار في منزلك</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sandy-yellow: #F4D03F;
+            --shrimp-orange: #FF7F50;
+            --sea-blue: #1F618D;
+            --light-blue: #5DADE2;
+            --deep-ocean: #154360;
+            --sand-bg: #FCF3CF;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--sand-bg);
+            color: var(--deep-ocean);
+            overflow-x: hidden;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Header & Logo --- */
+        header {
+            background: linear-gradient(135deg, var(--sea-blue), var(--deep-ocean));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 3px solid var(--sandy-yellow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .logo-arabic {
+            font-size: 2.2rem;
+            color: var(--sandy-yellow);
+            font-family: 'Cairo', sans-serif;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 0.9rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+
+        .wave-logo-svg {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+        }
+
+        /* Bubble Animation */
+        .bubble {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: rise var(--duration) infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-110vh) translateX(var(--drift)); opacity: 0; }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sandy-yellow);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--shrimp-orange);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(31, 97, 141, 0.7), rgba(21, 67, 96, 0.7)), url('https://images.unsplash.com/photo-1544551763-47a0159c9636?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            animation: fadeInScale 1.2s ease-out;
+        }
+
+        .cta-btn {
+            background: var(--sandy-yellow);
+            color: var(--deep-ocean);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            background: var(--shrimp-orange);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* --- Login Popup --- */
+        #loginPopup .popup-content {
+            border: 5px solid var(--sea-blue);
+        }
+
+        /* --- Cart Sidebar --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 350px;
+            height: 100%;
+            background: var(--white);
+            z-index: 10001;
+            transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            left: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--sand-bg);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-items-list {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .cart-item-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .cart-item-info p {
+            color: var(--sea-blue);
+            font-weight: 700;
+        }
+
+        .cart-footer {
+            border-top: 2px solid var(--sand-bg);
+            padding-top: 1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: -400px;
+            background: var(--white);
+            border-right: 5px solid #27ae60;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10002;
+            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toast.active {
+            right: 30px;
+        }
+
+        .toast-icon {
+            background: #27ae60;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .toast-progress {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 4px;
+            background: #27ae60;
+            width: 100%;
+        }
+
+        @keyframes progress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .toast.active .toast-progress {
+            animation: progress 4s linear forwards;
+        }
+
+        /* Wave Decoration */
+        .wave-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23FCF3CF" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: 1440px 100px;
+            animation: waveMove 10s linear infinite;
+        }
+
+        /* --- Product Section --- */
+        .section-title {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--deep-ocean);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--shrimp-orange);
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            padding: 0 5% 5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--shrimp-orange);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--deep-ocean);
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--sea-blue);
+        }
+
+        .add-to-cart {
+            margin-top: 1.5rem;
+            width: 100%;
+            background: var(--sea-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--deep-ocean);
+        }
+
+        /* --- Newsletter Popup --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+
+        .popup-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            animation: fadeInScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(to bottom right, var(--white), var(--sand-bg));
+            border: 5px solid var(--sandy-yellow);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--deep-ocean);
+        }
+
+        .popup-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--deep-ocean);
+        }
+
+        .popup p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .popup-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            outline: none;
+            text-align: center;
+        }
+
+        .popup-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--shrimp-orange);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.4);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--deep-ocean);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            color: var(--sandy-yellow);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+        }
+
+        /* --- Decorative Fish --- */
+        .floating-fish {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .fish-1 { top: 20%; left: 5%; width: 100px; animation: float 6s infinite ease-in-out; }
+        .fish-2 { top: 60%; right: 5%; width: 150px; animation: float 8s infinite ease-in-out; }
+    </style>
+</head>
+<body>
+
+    <!-- Popup Login -->
+    <div class="popup-overlay" id="loginPopup">
+        <div class="popup-content">
+            <span class="popup-close" id="closeLogin">&times;</span>
+            <div class="popup-icon">👤</div>
+            <h2>تسجيل الدخول</h2>
+            <p>سجل معنا لتتمكن من تتبع طلباتك والحصول على نقاط الولاء.</p>
+            <form class="popup-form">
+                <input type="text" placeholder="الاسم الكامل" required>
+                <input type="tel" placeholder="رقم الهاتف" required>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <button type="submit" style="background: var(--sea-blue);">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="popup-overlay" id="cartOverlay" style="background: rgba(0,0,0,0.5);"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <span class="popup-close" id="closeCart" style="position: static;">&times;</span>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <!-- Items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cartTotalAmount">0 ر.س</span>
+            </div>
+            <button class="cta-btn" id="orderBtn" style="width: 100%; border: none; cursor: pointer;">إتمام الطلب الآن</button>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <div class="toast-icon">✓</div>
+        <div>
+            <h4 style="color: #27ae60;">تم إرسال طلبك!</h4>
+            <p style="font-size: 0.9rem; color: #666;">شكراً لثقتك بمتجر سمكة</p>
+        </div>
+        <div class="toast-progress"></div>
+    </div>
+
+    <!-- Newsletter Popup -->
+    <div class="popup-overlay" id="newsletterPopup">
+        <div class="popup-content">
+            <span class="popup-close" id="closePopup">&times;</span>
+            <div class="popup-icon">🎁</div>
+            <h2>خصم خاص 20%!</h2>
+            <p>اشترك في نشرتنا الإخبارية واحصل على خصم فوري على أول طلب لك من متجر سمكة.</p>
+            <form class="popup-form">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني هنا" required>
+                <button type="submit">احصل على الخصم الآن</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <svg class="wave-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,50 Q25,30 40,50 T70,50 T100,50" fill="none" stroke="var(--sandy-yellow)" stroke-width="8" stroke-linecap="round">
+                    <animate attributeName="d" dur="3s" repeatCount="infinite" values="M10,50 Q25,30 40,50 T70,50 T100,50; M10,50 Q25,70 40,50 T70,50 T100,50; M10,50 Q25,30 40,50 T70,50 T100,50" />
+                </path>
+                <circle cx="40" cy="40" r="5" fill="var(--shrimp-orange)">
+                    <animate attributeName="cy" dur="2s" repeatCount="infinite" values="40;30;40" />
+                </circle>
+                <circle cx="60" cy="30" r="3" fill="var(--white)">
+                    <animate attributeName="cy" dur="2.5s" repeatCount="infinite" values="30;20;30" />
+                </circle>
+            </svg>
+            <div class="logo-wrapper">
+                <span class="logo-arabic">ســمكة</span>
+                <span class="logo-text">Samaka</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">الأحواض</a></li>
+                <li><a href="#">الطعام</a></li>
+                <li><a href="#">إكسسوارات</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-icon" id="openCart">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+            <a href="javascript:void(0)" class="cta-btn" id="openLogin" style="padding: 0.5rem 1.5rem; font-size: 1rem;">تسجيل دخول</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>اجعل منزلك ينبض بالحياة</h1>
+        <p>أكبر تشكيلة من أحواض السمك الفاخرة وجميع مستلزمات العناية بها بجودة عالمية وتوصيل سريع.</p>
+        <a href="#products" class="cta-btn">تسوق الآن</a>
+        <div class="wave-bg"></div>
+    </section>
+
+    <!-- Categories / Products -->
+    <section id="products">
+        <div class="section-title">
+            <h2>منتجاتنا المميزة</h2>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="assets/aquarium.png" alt="حوض سمك فاخر" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">أحواض سمك</div>
+                    <h3 class="product-name">حوض سمك "رويال بريميوم" 120 لتر</h3>
+                    <div class="product-price" data-price="1200">1,200 ر.س</div>
+                    <button class="add-to-cart" data-id="1" data-name="حوض رويال بريميوم" data-price="1200" data-img="assets/aquarium.png">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="assets/shrimp_food.png" alt="طعام سمك" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">طعام ومكملات</div>
+                    <h3 class="product-name">غذاء "شريمب جولد" الفاخر للروبيان</h3>
+                    <div class="product-price" data-price="85">85 ر.س</div>
+                    <button class="add-to-cart" data-id="2" data-name="غذاء شريمب جولد" data-price="85" data-img="assets/shrimp_food.png">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop" alt="فلتر مياه" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">إكسسوارات</div>
+                    <h3 class="product-name">فلتر مياه ذكي صامت (ألترا بلو)</h3>
+                    <div class="product-price" data-price="250">250 ر.س</div>
+                    <button class="add-to-cart" data-id="3" data-name="فلتر ألترا بلو" data-price="250" data-img="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop" alt="نباتات مائية" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">ديكور</div>
+                    <h3 class="product-name">مجموعة نباتات مائية طبيعية "أمازون"</h3>
+                    <div class="product-price" data-price="120">120 ر.س</div>
+                    <button class="add-to-cart" data-id="4" data-name="نباتات أمازون" data-price="120" data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop" alt="سمك ملون" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">أسماك</div>
+                    <h3 class="product-name">زوج سمك ديسكس "تايجر بلو"</h3>
+                    <div class="product-price" data-price="450">450 ر.س</div>
+                    <button class="add-to-cart" data-id="5" data-name="ديسكس تايجر بلو" data-price="450" data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop" alt="إضاءة" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">إكسسوارات</div>
+                    <h3 class="product-name">نظام إضاءة LED طيف كامل</h3>
+                    <div class="product-price" data-price="320">320 ر.س</div>
+                    <button class="add-to-cart" data-id="6" data-name="نظام إضاءة LED" data-price="320" data-img="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop" alt="صخور" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">ديكور</div>
+                    <h3 class="product-name">صخور "دراجون" طبيعية 5 كجم</h3>
+                    <div class="product-price" data-price="180">180 ر.س</div>
+                    <button class="add-to-cart" data-id="7" data-name="صخور دراجون" data-price="180" data-img="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop" alt="طعام رقائق" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">طعام ومكملات</div>
+                    <h3 class="product-name">رقائق غذاء "تترا" لجميع الأسماك</h3>
+                    <div class="product-price" data-price="45">45 ر.س</div>
+                    <button class="add-to-cart" data-id="8" data-name="رقائق تترا" data-price="45" data-img="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop" alt="مبرد" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">إكسسوارات</div>
+                    <h3 class="product-name">مبرد مياه إلكتروني ذكي</h3>
+                    <div class="product-price" data-price="890">890 ر.س</div>
+                    <button class="add-to-cart" data-id="9" data-name="مبرد مياه ذكي" data-price="890" data-img="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop" alt="سمكة ذهبية" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">أسماك</div>
+                    <h3 class="product-name">سمكة ذهبية "أورندا" عملاقة</h3>
+                    <div class="product-price" data-price="150">150 ر.س</div>
+                    <button class="add-to-cart" data-id="10" data-name="سمكة أورندا" data-price="150" data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop" alt="مضخة" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">إكسسوارات</div>
+                    <h3 class="product-name">مضخة هواء مزدوجة فائقة القوة</h3>
+                    <div class="product-price" data-price="110">110 ر.س</div>
+                    <button class="add-to-cart" data-id="11" data-name="مضخة هواء" data-price="110" data-img="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop" alt="شبكة" class="product-image">
+                <div class="product-info">
+                    <div class="product-category">إكسسوارات</div>
+                    <h3 class="product-name">شبكة صيد ناعمة بمقبض تلسكوبي</h3>
+                    <div class="product-price" data-price="35">35 ر.س</div>
+                    <button class="add-to-cart" data-id="12" data-name="شبكة صيد" data-price="35" data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>حول سمكة</h3>
+                <p>نحن نسعى لتقديم أفضل تجربة لمحبي تربية الأسماك في العالم العربي، من خلال توفير منتجات عالية الجودة وخبرة فنية متميزة.</p>
+            </div>
+            <div class="footer-col">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">سياسة التوصيل</a></li>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">المدونة</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>تواصل معنا</h3>
+                <ul>
+                    <li>📧 info@samaka.com</li>
+                    <li>📞 +966 50 000 0000</li>
+                    <li>📍 الرياض، المملكة العربية السعودية</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 متجر سمكة - جميع الحقوق محفوظة. تم التصميم بكل ❤️ لعشاق البحار.
+        </div>
+    </footer>
+
+    <script>
+        // State
+        let cartItems = [];
+
+        // Newsletter Popup Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('newsletterPopup').style.display = 'flex';
+            }, 5000);
+        });
+
+        const closeBtns = ['closePopup', 'closeLogin', 'closeCart'];
+        closeBtns.forEach(id => {
+            const btn = document.getElementById(id);
+            if(btn) {
+                btn.addEventListener('click', () => {
+                    btn.closest('.popup-overlay')?.style.setProperty('display', 'none');
+                    document.getElementById('cartSidebar')?.classList.remove('active');
+                    document.getElementById('cartOverlay')?.style.setProperty('display', 'none');
+                });
+            }
+        });
+
+        // Login Logic
+        document.getElementById('openLogin').addEventListener('click', () => {
+            document.getElementById('loginPopup').style.display = 'flex';
+        });
+
+        // Cart Logic
+        const openCartBtn = document.getElementById('openCart');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.getElementById('cartOverlay');
+
+        openCartBtn.addEventListener('click', () => {
+            cartSidebar.classList.add('active');
+            cartOverlay.style.display = 'block';
+            updateCartUI();
+        });
+
+        cartOverlay.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+            cartOverlay.style.display = 'none';
+        });
+
+        // Add to cart
+        const addButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+
+        addButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const product = {
+                    id: btn.dataset.id,
+                    name: btn.dataset.name,
+                    price: parseInt(btn.dataset.price),
+                    img: btn.dataset.img
+                };
+                
+                cartItems.push(product);
+                cartCount.textContent = cartItems.length;
+                
+                btn.textContent = 'تمت الإضافة! ✅';
+                btn.style.background = 'var(--shrimp-orange)';
+                setTimeout(() => {
+                    btn.textContent = 'إضافة للسلة';
+                    btn.style.background = 'var(--sea-blue)';
+                }, 2000);
+
+                // Show mini-toast when adding? (optional, but requested for Order)
+            });
+        });
+
+        function updateCartUI() {
+            const list = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotalAmount');
+            list.innerHTML = '';
+            
+            let total = 0;
+            cartItems.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} ر.س</p>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            
+            totalEl.textContent = `${total} ر.س`;
+        }
+
+        // Order Logic
+        document.getElementById('orderBtn').addEventListener('click', () => {
+            if(cartItems.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+            
+            // Close cart
+            cartSidebar.classList.remove('active');
+            cartOverlay.style.display = 'none';
+            
+            // Reset cart
+            cartItems = [];
+            cartCount.textContent = '0';
+            
+            // Show Success Toast
+            const toast = document.getElementById('successToast');
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 4000);
+        });
+
+        // Bubble Generation
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 20 + 10 + 'px';
+            bubble.style.width = size;
+            bubble.style.height = size;
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.setProperty('--duration', Math.random() * 5 + 5 + 's');
+            bubble.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 10000);
+        }
+
+        setInterval(createBubble, 500);
+    </script>
+</body>
+</html>
