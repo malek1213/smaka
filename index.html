@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samaka | متجر سمكة - عالم البحار في منزلك</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --sandy-yellow: #F4D03F;
@@ -35,19 +38,39 @@
 
         /* --- Animations --- */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         @keyframes waveMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         @keyframes fadeInScale {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* --- Header & Logo --- */
@@ -61,7 +84,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border-bottom: 3px solid var(--sandy-yellow);
         }
 
@@ -86,7 +109,7 @@
             font-size: 2.2rem;
             color: var(--sandy-yellow);
             font-family: 'Cairo', sans-serif;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
         }
 
         .logo-text {
@@ -101,7 +124,7 @@
         .wave-logo-svg {
             width: 50px;
             height: 50px;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
         }
 
         /* Bubble Animation */
@@ -116,9 +139,19 @@
         }
 
         @keyframes rise {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-110vh) translateX(var(--drift)); opacity: 0; }
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-110vh) translateX(var(--drift));
+                opacity: 0;
+            }
         }
 
         nav ul {
@@ -179,7 +212,7 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
             animation: fadeInScale 1s ease-out;
         }
 
@@ -199,7 +232,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .cta-btn:hover {
@@ -223,7 +256,7 @@
             background: var(--white);
             z-index: 10001;
             transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             display: flex;
             flex-direction: column;
@@ -295,7 +328,7 @@
             border-right: 5px solid #27ae60;
             padding: 1.5rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 10002;
             transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
@@ -329,8 +362,13 @@
         }
 
         @keyframes progress {
-            from { width: 100%; }
-            to { width: 0%; }
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
         }
 
         .toast.active .toast-progress {
@@ -385,15 +423,15 @@
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.4s ease;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .product-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .product-image {
@@ -450,7 +488,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             display: none;
             justify-content: center;
             align-items: center;
@@ -559,7 +597,7 @@
         .copyright {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #888;
         }
 
@@ -571,10 +609,22 @@
             pointer-events: none;
         }
 
-        .fish-1 { top: 20%; left: 5%; width: 100px; animation: float 6s infinite ease-in-out; }
-        .fish-2 { top: 60%; right: 5%; width: 150px; animation: float 8s infinite ease-in-out; }
+        .fish-1 {
+            top: 20%;
+            left: 5%;
+            width: 100px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .fish-2 {
+            top: 60%;
+            right: 5%;
+            width: 150px;
+            animation: float 8s infinite ease-in-out;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Popup Login -->
@@ -608,7 +658,8 @@
                 <span>الإجمالي:</span>
                 <span id="cartTotalAmount">0 ر.س</span>
             </div>
-            <button class="cta-btn" id="orderBtn" style="width: 100%; border: none; cursor: pointer;">إتمام الطلب الآن</button>
+            <button class="cta-btn" id="orderBtn" style="width: 100%; border: none; cursor: pointer;">إتمام الطلب
+                الآن</button>
         </div>
     </div>
 
@@ -640,8 +691,10 @@
     <header>
         <div class="logo">
             <svg class="wave-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10,50 Q25,30 40,50 T70,50 T100,50" fill="none" stroke="var(--sandy-yellow)" stroke-width="8" stroke-linecap="round">
-                    <animate attributeName="d" dur="3s" repeatCount="infinite" values="M10,50 Q25,30 40,50 T70,50 T100,50; M10,50 Q25,70 40,50 T70,50 T100,50; M10,50 Q25,30 40,50 T70,50 T100,50" />
+                <path d="M10,50 Q25,30 40,50 T70,50 T100,50" fill="none" stroke="var(--sandy-yellow)" stroke-width="8"
+                    stroke-linecap="round">
+                    <animate attributeName="d" dur="3s" repeatCount="infinite"
+                        values="M10,50 Q25,30 40,50 T70,50 T100,50; M10,50 Q25,70 40,50 T70,50 T100,50; M10,50 Q25,30 40,50 T70,50 T100,50" />
                 </path>
                 <circle cx="40" cy="40" r="5" fill="var(--shrimp-orange)">
                     <animate attributeName="cy" dur="2s" repeatCount="infinite" values="40;30;40" />
@@ -669,7 +722,8 @@
                 🛒
                 <span class="cart-count">0</span>
             </div>
-            <a href="javascript:void(0)" class="cta-btn" id="openLogin" style="padding: 0.5rem 1.5rem; font-size: 1rem;">تسجيل دخول</a>
+            <a href="javascript:void(0)" class="cta-btn" id="openLogin"
+                style="padding: 0.5rem 1.5rem; font-size: 1rem;">تسجيل دخول</a>
         </div>
     </header>
 
@@ -695,7 +749,8 @@
                     <div class="product-category">أحواض سمك</div>
                     <h3 class="product-name">حوض سمك "رويال بريميوم" 120 لتر</h3>
                     <div class="product-price" data-price="1200">1,200 ر.س</div>
-                    <button class="add-to-cart" data-id="1" data-name="حوض رويال بريميوم" data-price="1200" data-img="assets/aquarium.png">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="1" data-name="حوض رويال بريميوم" data-price="1200"
+                        data-img="assets/aquarium.png">إضافة للسلة</button>
                 </div>
             </div>
 
@@ -706,117 +761,148 @@
                     <div class="product-category">طعام ومكملات</div>
                     <h3 class="product-name">غذاء "شريمب جولد" الفاخر للروبيان</h3>
                     <div class="product-price" data-price="85">85 ر.س</div>
-                    <button class="add-to-cart" data-id="2" data-name="غذاء شريمب جولد" data-price="85" data-img="assets/shrimp_food.png">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="2" data-name="غذاء شريمب جولد" data-price="85"
+                        data-img="assets/shrimp_food.png">إضافة للسلة</button>
                 </div>
             </div>
 
             <!-- Product 3 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop" alt="فلتر مياه" class="product-image">
+                <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop"
+                    alt="فلتر مياه" class="product-image">
                 <div class="product-info">
                     <div class="product-category">إكسسوارات</div>
                     <h3 class="product-name">فلتر مياه ذكي صامت (ألترا بلو)</h3>
                     <div class="product-price" data-price="250">250 ر.س</div>
-                    <button class="add-to-cart" data-id="3" data-name="فلتر ألترا بلو" data-price="250" data-img="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="3" data-name="فلتر ألترا بلو" data-price="250"
+                        data-img="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=2069&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 4 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop" alt="نباتات مائية" class="product-image">
+                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop"
+                    alt="نباتات مائية" class="product-image">
                 <div class="product-info">
                     <div class="product-category">ديكور</div>
                     <h3 class="product-name">مجموعة نباتات مائية طبيعية "أمازون"</h3>
                     <div class="product-price" data-price="120">120 ر.س</div>
-                    <button class="add-to-cart" data-id="4" data-name="نباتات أمازون" data-price="120" data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="4" data-name="نباتات أمازون" data-price="120"
+                        data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 5 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop" alt="سمك ملون" class="product-image">
+                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop"
+                    alt="سمك ملون" class="product-image">
                 <div class="product-info">
                     <div class="product-category">أسماك</div>
                     <h3 class="product-name">زوج سمك ديسكس "تايجر بلو"</h3>
                     <div class="product-price" data-price="450">450 ر.س</div>
-                    <button class="add-to-cart" data-id="5" data-name="ديسكس تايجر بلو" data-price="450" data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="5" data-name="ديسكس تايجر بلو" data-price="450"
+                        data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 6 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop" alt="إضاءة" class="product-image">
+                <img src="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop"
+                    alt="إضاءة" class="product-image">
                 <div class="product-info">
                     <div class="product-category">إكسسوارات</div>
                     <h3 class="product-name">نظام إضاءة LED طيف كامل</h3>
                     <div class="product-price" data-price="320">320 ر.س</div>
-                    <button class="add-to-cart" data-id="6" data-name="نظام إضاءة LED" data-price="320" data-img="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="6" data-name="نظام إضاءة LED" data-price="320"
+                        data-img="https://images.unsplash.com/photo-1610450954863-79011706869a?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 7 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop" alt="صخور" class="product-image">
+                <img src="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop"
+                    alt="صخور" class="product-image">
                 <div class="product-info">
                     <div class="product-category">ديكور</div>
                     <h3 class="product-name">صخور "دراجون" طبيعية 5 كجم</h3>
                     <div class="product-price" data-price="180">180 ر.س</div>
-                    <button class="add-to-cart" data-id="7" data-name="صخور دراجون" data-price="180" data-img="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="7" data-name="صخور دراجون" data-price="180"
+                        data-img="https://images.unsplash.com/photo-1534043464124-3be32fe000c9?q=80&w=2012&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 8 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop" alt="طعام رقائق" class="product-image">
+                <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop"
+                    alt="طعام رقائق" class="product-image">
                 <div class="product-info">
                     <div class="product-category">طعام ومكملات</div>
                     <h3 class="product-name">رقائق غذاء "تترا" لجميع الأسماك</h3>
                     <div class="product-price" data-price="45">45 ر.س</div>
-                    <button class="add-to-cart" data-id="8" data-name="رقائق تترا" data-price="45" data-img="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="8" data-name="رقائق تترا" data-price="45"
+                        data-img="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=2024&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 9 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop" alt="مبرد" class="product-image">
+                <img src="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop"
+                    alt="مبرد" class="product-image">
                 <div class="product-info">
                     <div class="product-category">إكسسوارات</div>
                     <h3 class="product-name">مبرد مياه إلكتروني ذكي</h3>
                     <div class="product-price" data-price="890">890 ر.س</div>
-                    <button class="add-to-cart" data-id="9" data-name="مبرد مياه ذكي" data-price="890" data-img="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="9" data-name="مبرد مياه ذكي" data-price="890"
+                        data-img="https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 10 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop" alt="سمكة ذهبية" class="product-image">
+                <img src="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop"
+                    alt="سمكة ذهبية" class="product-image">
                 <div class="product-info">
                     <div class="product-category">أسماك</div>
                     <h3 class="product-name">سمكة ذهبية "أورندا" عملاقة</h3>
                     <div class="product-price" data-price="150">150 ر.س</div>
-                    <button class="add-to-cart" data-id="10" data-name="سمكة أورندا" data-price="150" data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="10" data-name="سمكة أورندا" data-price="150"
+                        data-img="https://images.unsplash.com/photo-1509101071848-d43f82c3324d?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 11 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop" alt="مضخة" class="product-image">
+                <img src="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop"
+                    alt="مضخة" class="product-image">
                 <div class="product-info">
                     <div class="product-category">إكسسوارات</div>
                     <h3 class="product-name">مضخة هواء مزدوجة فائقة القوة</h3>
                     <div class="product-price" data-price="110">110 ر.س</div>
-                    <button class="add-to-cart" data-id="11" data-name="مضخة هواء" data-price="110" data-img="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="11" data-name="مضخة هواء" data-price="110"
+                        data-img="https://images.unsplash.com/photo-1524513009967-8913992677c5?q=80&w=2067&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
 
             <!-- Product 12 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop" alt="شبكة" class="product-image">
+                <img src="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop"
+                    alt="شبكة" class="product-image">
                 <div class="product-info">
                     <div class="product-category">إكسسوارات</div>
                     <h3 class="product-name">شبكة صيد ناعمة بمقبض تلسكوبي</h3>
                     <div class="product-price" data-price="35">35 ر.س</div>
-                    <button class="add-to-cart" data-id="12" data-name="شبكة صيد" data-price="35" data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة للسلة</button>
+                    <button class="add-to-cart" data-id="12" data-name="شبكة صيد" data-price="35"
+                        data-img="https://images.unsplash.com/photo-1544436578-831872957ca1?q=80&w=2070&auto=format&fit=crop">إضافة
+                        للسلة</button>
                 </div>
             </div>
         </div>
@@ -827,7 +913,8 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>حول سمكة</h3>
-                <p>نحن نسعى لتقديم أفضل تجربة لمحبي تربية الأسماك في العالم العربي، من خلال توفير منتجات عالية الجودة وخبرة فنية متميزة.</p>
+                <p>نحن نسعى لتقديم أفضل تجربة لمحبي تربية الأسماك في العالم العربي، من خلال توفير منتجات عالية الجودة
+                    وخبرة فنية متميزة.</p>
             </div>
             <div class="footer-col">
                 <h3>روابط سريعة</h3>
@@ -866,7 +953,7 @@
         const closeBtns = ['closePopup', 'closeLogin', 'closeCart'];
         closeBtns.forEach(id => {
             const btn = document.getElementById(id);
-            if(btn) {
+            if (btn) {
                 btn.addEventListener('click', () => {
                     btn.closest('.popup-overlay')?.style.setProperty('display', 'none');
                     document.getElementById('cartSidebar')?.classList.remove('active');
@@ -908,10 +995,10 @@
                     price: parseInt(btn.dataset.price),
                     img: btn.dataset.img
                 };
-                
+
                 cartItems.push(product);
                 cartCount.textContent = cartItems.length;
-                
+
                 btn.textContent = 'تمت الإضافة! ✅';
                 btn.style.background = 'var(--shrimp-orange)';
                 setTimeout(() => {
@@ -927,7 +1014,7 @@
             const list = document.getElementById('cartItemsList');
             const totalEl = document.getElementById('cartTotalAmount');
             list.innerHTML = '';
-            
+
             let total = 0;
             cartItems.forEach((item, index) => {
                 total += item.price;
@@ -942,29 +1029,29 @@
                 `;
                 list.appendChild(div);
             });
-            
+
             totalEl.textContent = `${total} ر.س`;
         }
 
         // Order Logic
         document.getElementById('orderBtn').addEventListener('click', () => {
-            if(cartItems.length === 0) {
+            if (cartItems.length === 0) {
                 alert('السلة فارغة!');
                 return;
             }
-            
+
             // Close cart
             cartSidebar.classList.remove('active');
             cartOverlay.style.display = 'none';
-            
+
             // Reset cart
             cartItems = [];
             cartCount.textContent = '0';
-            
+
             // Show Success Toast
             const toast = document.getElementById('successToast');
             toast.classList.add('active');
-            
+
             setTimeout(() => {
                 toast.classList.remove('active');
             }, 4000);
@@ -990,4 +1077,5 @@
         setInterval(createBubble, 500);
     </script>
 </body>
+
 </html>
