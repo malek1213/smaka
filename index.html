@@ -622,6 +622,164 @@
             width: 150px;
             animation: float 8s infinite ease-in-out;
         }
+
+        /* --- Mobile Responsive Styles --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .mobile-only-login {
+            display: none;
+        }
+
+        @media (max-width: 992px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--deep-ocean);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            nav ul li a {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Hamburger Animation */
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -8px);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 10%;
+            }
+
+            .logo-arabic {
+                font-size: 1.8rem;
+            }
+
+            .logo-text {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .wave-logo-svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                left: -100%;
+            }
+
+            .cart-sidebar.active {
+                left: 0;
+            }
+
+            .header-actions {
+                gap: 1rem;
+            }
+
+            .cta-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .mobile-only-login {
+                display: block;
+            }
+
+            .desktop-login {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                padding: 0 5% 3rem;
+            }
+
+            .header-actions .cta-btn {
+                display: none;
+                /* Hide login button on very small screens, or put in nav */
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            .popup-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .toast {
+                right: 50%;
+                transform: translateX(50%);
+                width: 90%;
+                bottom: 20px;
+            }
+
+            .toast.active {
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
     </style>
 </head>
 
@@ -708,13 +866,15 @@
                 <span class="logo-text">Samaka</span>
             </div>
         </div>
-        <nav>
+        <nav id="mobileNav">
             <ul>
                 <li><a href="#">الرئيسية</a></li>
                 <li><a href="#">الأحواض</a></li>
                 <li><a href="#">الطعام</a></li>
                 <li><a href="#">إكسسوارات</a></li>
                 <li><a href="#">تواصل معنا</a></li>
+                <li class="mobile-only-login"><a href="javascript:void(0)" onclick="openLoginFromNav()">تسجيل دخول</a>
+                </li>
             </ul>
         </nav>
         <div class="header-actions">
@@ -722,8 +882,13 @@
                 🛒
                 <span class="cart-count">0</span>
             </div>
-            <a href="javascript:void(0)" class="cta-btn" id="openLogin"
+            <a href="javascript:void(0)" class="cta-btn desktop-login" id="openLogin"
                 style="padding: 0.5rem 1.5rem; font-size: 1rem;">تسجيل دخول</a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
@@ -1075,6 +1240,27 @@
         }
 
         setInterval(createBubble, 500);
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobileNav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        function openLoginFromNav() {
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
     </script>
 </body>
 
