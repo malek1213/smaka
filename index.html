@@ -30,10 +30,14 @@
             font-family: 'Cairo', sans-serif;
         }
 
+        html,
         body {
+            max-width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             background-color: var(--sand-bg);
             color: var(--deep-ocean);
-            overflow-x: hidden;
         }
 
         /* --- Animations --- */
@@ -75,8 +79,10 @@
 
         /* --- Header & Logo --- */
         header {
+            width: 100%;
+            flex-wrap: wrap;
             background: linear-gradient(135deg, var(--sea-blue), var(--deep-ocean));
-            padding: 1rem 5%;
+            padding: 10px 2%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -195,7 +201,9 @@
 
         /* --- Hero Section --- */
         .hero {
+            width: 100%;
             height: 80vh;
+            padding: 20px;
             background: linear-gradient(rgba(31, 97, 141, 0.7), rgba(21, 67, 96, 0.7)), url('https://images.unsplash.com/photo-1544551763-47a0159c9636?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -414,8 +422,9 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            width: 100%;
             padding: 0 5% 5rem;
         }
 
